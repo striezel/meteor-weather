@@ -1,0 +1,74 @@
+<template name="profile">
+  {{> connectionStatus}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading" align="center">
+      <span class="glyphicon glyphicon-user"> </span>
+      <strong>Meteor Weather: User profile</strong>
+    </div>
+    <div class="panel-body">
+      <div class="col-xs-12" align="justify">
+      {{#if currentUser}}
+        You are logged in as {{currentUser.username}}.
+        <br /><br />
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2">User data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="glyphicon glyphicon-user"> </span> User name:
+              </td>
+              <td>{{currentUser.username}}</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="glyphicon glyphicon-hourglass"> </span> Account creation date:
+              </td>
+              <td>{{userdata.createdAt}}</td>
+            </tr>
+            {{#each currentUser.emails}}
+            <tr>
+              <td>
+                <span class="glyphicon glyphicon-envelope"></span> E-mail:
+              </td>
+              <td>
+                {{address}}
+                {{#if verified}}
+                  (<span class="glyphicon glyphicon-ok"></span> verified)
+                {{else}}
+                  (<span class="glyphicon glyphicon-remove"></span> not verified)
+                {{/if}}
+              </td>
+            </tr>
+            {{/each}}
+            {{#if currentUser.admin}}
+            <tr>
+              <td colspan="2">
+                <span class="glyphicon glyphicon-warning-sign"> </span> You have administrative privileges.
+                <br /><br />
+                Remember: With great power comes great responsibility!
+              </td>
+            </tr>
+            {{/if}}
+          </tbody>
+        </table>
+        {{> logoutButton}}
+      {{else}}
+        You must be logged in to see your profile.
+        <br /><br />
+        {{> loginButtons}}
+      {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <a href="{{pathFor 'intro'}}">
+    <button class="btn btn-default col-xs-6">
+      <span class="glyphicon glyphicon-step-backward"></span> Back
+    </button>
+  </a>
+</template>

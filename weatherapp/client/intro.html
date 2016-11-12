@@ -8,10 +8,20 @@
     </div>
     <div class="panel-body">
       <div class="col-xs-12" align="justify">
-      Welcome to Meteor Weather!
+      {{#if currentUser}}
+        Welcome to Meteor Weather, <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a>!
+        <br /><br />
+        {{> logoutButton}}
+      {{else}}
+        Welcome to Meteor Weather!
+      {{/if}}
       <br /><br />
       This web application is still under development.
       Please come back later to see more new features.
+      <br /><br />
+      {{#unless currentUser}}
+        {{> loginButtons}}
+      {{/unless}}
       </div>
     </div>
   </div>

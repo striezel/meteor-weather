@@ -22,3 +22,5 @@ session
 twbs:bootstrap
 iron:router
 momentjs:moment
+accounts-password
+accounts-ui

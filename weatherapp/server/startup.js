@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
+//startup function that fills Info collection
 Meteor.startup(function() {
   //clear info collection
   Info.remove({});
@@ -38,4 +39,20 @@ Meteor.startup(function() {
 
   //add server startup time
   Info.insert({name: 'startupTime', value: new Date()});
+});
+
+//startup function to create user
+Meteor.startup(function() {
+  let uDoc = Meteor.users.findOne({admin: true});
+  if (!uDoc)
+  {
+    //create missing admin account
+    let admin = {username: 'admin',
+                 email: 'admin@localhost',
+                 password: 'adminpassw0rd!',
+                 admin: true};
+    Accounts.createUser(admin);
+    console.log('Info: admin account with default credentials was created.');
+    Meteor.users.update({username: 'admin'}, {$set: {admin: true}});
+  }
 });
