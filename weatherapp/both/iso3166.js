@@ -35,6 +35,7 @@ codesISO3166 = {
   'ES': {de: 'Spanien', en: 'Spain'},
   'FI': {de: 'Finnland', en: 'Finland'},
   'FR': {de: 'Frankreich', en: 'France'},
+  'GB': {de: 'Vereinigtes Königreich', en: 'Great Britain'},
   'GR': {de: 'Griechenland', en: 'Greece'},
   'HK': {de: 'Hongkong', en: 'Hongkong'},
   'HT': {de: 'Haiti', en: 'Haiti'},
@@ -50,6 +51,7 @@ codesISO3166 = {
   'LV': {de: 'Lettland', en: 'Latvia'},
   'MO': {de: 'Macau', en: 'Macao'},
   'MT': {de: 'Malta', en: 'Malta'},
+  'MX': {de: 'Mexiko', en: 'Mexico'},
   'PL': {de: 'Polen', en: 'Poland'},
   'PT': {de: 'Portugal', en: 'Portugal'},
   'RU': {de: 'Russische Föderation', en: 'Russian Federation'},
@@ -59,5 +61,6 @@ codesISO3166 = {
   'SN': {de: 'Senegal', en: 'Senegal'},
   'SV': {de: 'El Salvador', en: 'El Salvador'},
   'TR': {de: 'Türkei', en: 'Turkey'},
+  'US': {de: 'Vereinigte Staaten von Amerika', en: 'United States of America'},
   'VI': {de: 'Amerikanische Jungferninseln', en: 'Virgin Islands (U.S.)'}
 };

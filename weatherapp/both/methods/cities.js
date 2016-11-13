@@ -68,11 +68,55 @@ Meteor.methods({
         let cityDoc = Cities.findOne(data);
         if (!cityDoc && (item.id != 0))
         {
+          data.active = false;
           Cities.insert(data);
           ++insertCount;
         } //if
       } //for
       return insertCount;
     });
+  },
+
+
+  /* removeCity: method to remove a city from the list of available cities
+
+     parameters:
+       cityId - (string) database ID of the city
+
+     returns:
+       Returns the number of removed cities, i.e. usually one.
+  */
+  removeCity: function(cityId) {
+    if (typeof cityId !== "string")
+    {
+      throw new Meteor.Error('invalid-parameter-type',
+       'Parameter "cityId" is not a string, it is ' + typeof cityId + '!');
+    }
+    //only logged in user might do that
+    if (!Meteor.userId())
+    {
+      throw new Meteor.Error('not-authorized', 'Only a signed-in user is allowed to do that!');
+    }
+    let adminDoc = Meteor.users.findOne({_id: Meteor.userId(), admin: true});
+    if (!adminDoc)
+    {
+      throw new Meteor.Error('not-authorized', 'Only an admin user is allowed to do that!');
+    }
+    let cityDoc = Cities.findOne({_id: cityId});
+    if (!cityDoc)
+    {
+      throw new Meteor.Error('entity-not-found', 'There is no city with the ID ' + cityId + '!');
+    }
+    let affected = Cities.remove({_id: cityId});
+    if (affected>0)
+    {
+      let uname = Meteor.users.findOne({_id: Meteor.userId()});
+      if (!uname)
+        uname = 'unknown user';
+      else
+        uname = uname.username || uname.emails[0];
+      console.log('Info: City with _id ' + cityId + ' was removed by ' + uname + '.');
+    }
+    return affected;
   }
 });

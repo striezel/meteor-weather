@@ -18,6 +18,13 @@ Template.configuration.helpers({
     cl = cl.fetch();
     if (cl.length === 0)
       return null;
+    for (let city of cl)
+    {
+      if ((city.sys.country) && codesISO3166[city.sys.country])
+      {
+        city.sys.country = city.sys.country + ' (' + codesISO3166[city.sys.country].en + ')';
+      }
+    } //for
     return cl;
   }
 });
@@ -58,5 +65,23 @@ Template.configuration.events({
         alert('City was not found. ' + error.reason);
       }
     });
+  },
+  'click button': function(event) {
+    console.log('data: ' + event.currentTarget.getAttribute('data'));
+    let data = event.currentTarget.getAttribute('data');
+    if (!data)
+      return true;
+    if (data.startsWith('remove_'))
+    {
+      let id = data.substring(7);
+      Meteor.call('removeCity', id, function(error, result) {
+        if (error)
+          alert("City was not removed! " + error.reason);
+        else if (result==1)
+        {
+          console.log('City was removed.');
+        }
+      });
+    } //if 'remove_...'
   }
 });

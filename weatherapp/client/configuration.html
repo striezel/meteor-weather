@@ -43,15 +43,34 @@
                         <th>Latitude</th>
                         <th>Longitude</th>
                         <th>ID</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                   {{#each cities}}
                   <tr>
-                    <td>{{name}}</td>
+                    <td>
+                      {{#if active}}
+                      <span class="glyphicon glyphicon-ok"> </span>
+                      {{else}}
+                      <span class="glyphicon glyphicon-remove"> </span>
+                      {{/if}}
+                      {{name}}
+                    </td>
                     <td>{{sys.country}}</td>
                     <td>{{coord.lat}}</td>
                     <td>{{coord.lon}}</td>
                     <td>{{id}}</td>
+                    <td>
+                      <button class="btn btn-success" data="activate_{{_id}}">
+                        <span class="glyphicon glyphicon-ok"> </span>
+                      </button>
+                      <button class="btn btn-warning" data="deactivate_{{_id}}">
+                        <span class="glyphicon glyphicon-remove"> </span>
+                      </button>
+                      <button class="btn btn-danger" data="remove_{{_id}}">
+                        <span class="glyphicon glyphicon-trash"> </span>
+                      </button>
+                    </td>
                   </tr>
                   {{/each}}
                   </table>
