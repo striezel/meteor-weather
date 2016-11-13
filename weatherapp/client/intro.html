@@ -10,6 +10,12 @@
       <div class="col-xs-12" align="justify">
       {{#if currentUser}}
         Welcome to Meteor Weather, <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a>!
+        {{#if isAdmin}}
+        <br /><br />
+        <a href="{{pathFor 'configuration'}}" class="btn btn-default">
+          <span class="glyphicon glyphicon-cog"> </span> Configuration
+        </a>
+        {{/if}}
         <br /><br />
         {{> logoutButton}}
       {{else}}

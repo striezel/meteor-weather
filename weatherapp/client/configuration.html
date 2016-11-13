@@ -1,0 +1,88 @@
+<template name="configuration">
+  {{> connectionStatus}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading" align="center">
+      <span class="glyphicon glyphicon-cog"> </span>
+      <strong>Meteor Weather: Configuration</strong>
+    </div>
+    <div class="panel-body">
+      <div class="col-xs-12" align="justify">
+      {{#if currentUser}}
+        {{#if currentUser.admin}}
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2">Configuration data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="glyphicon glyphicon-wrench"> </span> OpenWeatherMap API key:
+              </td>
+              <td>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Value not set"
+                         id="apikey" value="{{config.apikey}}" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="setapikey">Set new value!</button>
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>List of available cities:</td>
+              <td>
+                {{#if cities}}
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>ID</th>
+                      </tr>
+                    </thead>
+                  {{#each cities}}
+                  <tr>
+                    <td>{{name}}</td>
+                    <td>{{sys.country}}</td>
+                    <td>{{coord.lat}}</td>
+                    <td>{{coord.lon}}</td>
+                    <td>{{id}}</td>
+                  </tr>
+                  {{/each}}
+                  </table>
+                {{else}}
+                There are no cities yet.
+                {{/if}}
+                <hr />
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter name of city"
+                         id="findcitytxt" value="" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="findcitybtn">Find</button>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {{else}}
+        Your account does not have the privileges to see or change the configuration settings.
+        {{/if}}
+      {{else}}
+      Your have to be signed in to see or change the configuration settings.
+      {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <a href="{{pathFor 'intro'}}">
+    <button class="btn btn-default col-xs-6">
+      <span class="glyphicon glyphicon-step-backward"></span> Back
+    </button>
+  </a>
+</template>

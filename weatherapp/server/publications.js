@@ -31,3 +31,8 @@ Meteor.publish('configuration', function(){
     this.ready();
   }
 });
+
+//collection of available/known cities
+Meteor.publish('cities', function(){
+  return Cities.find({});
+});

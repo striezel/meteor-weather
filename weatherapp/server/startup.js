@@ -56,3 +56,13 @@ Meteor.startup(function() {
     Meteor.users.update({username: 'admin'}, {$set: {admin: true}});
   }
 });
+
+//startup function to set configuration values
+Meteor.startup(function() {
+  let confDoc = Configuration.findOne({});
+  if (!confDoc)
+  {
+    Configuration.insert({apikey: null});
+    console.log('Info: Basic configuration data was created.');
+  }
+});
