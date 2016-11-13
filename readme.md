@@ -5,7 +5,7 @@
 This readme is still incomplete and will be filled with relevant information
 in the not so far future.
 
-# Known issues
+## Known issues
 
 Not an issue of this app, but rather a Meteor issue:
 When you start the app the first time (via `meteor run`), you might get an
