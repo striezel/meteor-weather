@@ -67,9 +67,9 @@
                       <button class="btn btn-warning" data="deactivate_{{_id}}">
                         <span class="glyphicon glyphicon-remove"> </span>
                       </button>
-                      <button class="btn btn-danger" data="remove_{{_id}}">
+                      <a class="btn btn-danger" href="/city/remove/{{_id}}">
                         <span class="glyphicon glyphicon-trash"> </span>
-                      </button>
+                      </a>
                     </td>
                   </tr>
                   {{/each}}
@@ -82,7 +82,9 @@
                   <input type="text" class="form-control" placeholder="Enter name of city"
                          id="findcitytxt" value="" />
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" id="findcitybtn">Find</button>
+                    <button class="btn btn-default" type="button" id="findcitybtn">
+                      <span class="glyphicon glyphicon-search"> </span> Find
+                    </button>
                   </span>
                 </div>
               </td>

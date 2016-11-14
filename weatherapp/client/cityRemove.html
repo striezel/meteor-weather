@@ -1,0 +1,38 @@
+<template name="cityRemove">
+  {{> connectionStatus}}
+
+  <div class="alert alert-danger" role="alert">
+    <h2>Do you really want to delete this city?</h2>
+    <hr />
+    <table class="table">
+      <tr>
+        <td class="col-xs4 col-md2"><strong>Name:</strong></td>
+        <td class="col-xs8 col-md4">{{cityData.name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Country:</strong></td>
+        <td>{{cityData.sys.country}}</td>
+      </tr>
+      <tr>
+        <td><strong>Latitude:</strong></td>
+        <td>{{cityData.coord.lat}}</td>
+      </tr>
+      <tr>
+        <td><strong>Longitude:</strong></td>
+        <td>{{cityData.coord.lon}}</td>
+      </tr>
+    </table>
+    <hr />
+    <p>
+      <button class="btn btn-danger deleteConfirm col-xs-4">
+        <span class="glyphicon glyphicon-trash"></span> Yes
+      </button>
+      <div class="col-xs-4"> </div>
+      <!-- using style="width: 33%" instead of class="col-xs-4", because the
+           later one does not display properly (for an unknown reason). -->
+      <a href="{{pathFor 'configuration'}}" class="btn btn-default" style="width:33%;">
+        <span class="glyphicon glyphicon-remove"></span> No
+      </a>
+    </p>
+  </div>
+</template>

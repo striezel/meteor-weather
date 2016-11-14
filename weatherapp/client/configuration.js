@@ -71,17 +71,10 @@ Template.configuration.events({
     let data = event.currentTarget.getAttribute('data');
     if (!data)
       return true;
-    if (data.startsWith('remove_'))
+    /* if (data.startsWith('activate_'))
     {
-      let id = data.substring(7);
-      Meteor.call('removeCity', id, function(error, result) {
-        if (error)
-          alert("City was not removed! " + error.reason);
-        else if (result==1)
-        {
-          console.log('City was removed.');
-        }
-      });
-    } //if 'remove_...'
+      let id = data.substring(9);
+      ...
+    } //if 'activate_...' */
   }
 });
