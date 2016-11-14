@@ -108,7 +108,7 @@ Meteor.methods({
       throw new Meteor.Error('entity-not-found', 'There is no city with the ID ' + cityId + '!');
     }
     let affected = Cities.remove({_id: cityId});
-    if (affected>0)
+    if (affected > 0)
     {
       let uname = Meteor.users.findOne({_id: Meteor.userId()});
       if (!uname)
@@ -116,6 +116,56 @@ Meteor.methods({
       else
         uname = uname.username || uname.emails[0];
       console.log('Info: City with _id ' + cityId + ' was removed by ' + uname + '.');
+    }
+    return affected;
+  },
+
+
+  /* activeCity: method to activate or deactivate a city in the list of available cities
+
+     parameters:
+       cityId - (string) database ID of the city
+       activeState - (bool) new activation state of the city
+
+     returns:
+       Returns the number of updated cities, i.e. usually one.
+  */
+  activeCity: function(cityId, activeState) {
+    if (typeof cityId !== "string")
+    {
+      throw new Meteor.Error('invalid-parameter-type',
+       'Parameter "cityId" is not a string, it is ' + typeof cityId + '!');
+    }
+    if (typeof activeState !== "boolean")
+    {
+      throw new Meteor.Error('invalid-parameter-type',
+       'Parameter "activeState" is not a boolean, it is ' + typeof activeState + '!');
+    }
+    //only logged in user might do that
+    if (!Meteor.userId())
+    {
+      throw new Meteor.Error('not-authorized', 'Only a signed-in user is allowed to do that!');
+    }
+    let adminDoc = Meteor.users.findOne({_id: Meteor.userId(), admin: true});
+    if (!adminDoc)
+    {
+      throw new Meteor.Error('not-authorized', 'Only an admin user is allowed to do that!');
+    }
+    let cityDoc = Cities.findOne({_id: cityId});
+    if (!cityDoc)
+    {
+      throw new Meteor.Error('entity-not-found', 'There is no city with the ID ' + cityId + '!');
+    }
+    let affected = Cities.update({_id: cityId}, {$set: {active: activeState}});
+    if (affected > 0)
+    {
+      let uname = Meteor.users.findOne({_id: Meteor.userId()});
+      if (!uname)
+        uname = 'unknown user';
+      else
+        uname = uname.username || uname.emails[0];
+      let verb = activeState ? 'activated' : 'deactivated';
+      console.log('Info: City with _id ' + cityId + ' was ' + verb + ' by ' + uname + '.');
     }
     return affected;
   }

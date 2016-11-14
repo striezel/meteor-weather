@@ -71,10 +71,21 @@ Template.configuration.events({
     let data = event.currentTarget.getAttribute('data');
     if (!data)
       return true;
-    /* if (data.startsWith('activate_'))
+    if (data.startsWith('activate_'))
     {
       let id = data.substring(9);
-      ...
-    } //if 'activate_...' */
+      Meteor.call('activeCity', id, true, function (err, res) {
+        if (err)
+          alert("City could not be activated! " + err.reason);
+      });
+    } //if 'activate_...'
+    else if (data.startsWith('deactivate_'))
+    {
+      let id = data.substring(11);
+      Meteor.call('activeCity', id, false, function (err, res) {
+        if (err)
+          alert("City could not be deactivated! " + err.reason);
+      });
+    } //if 'deactivate_...'
   }
 });
