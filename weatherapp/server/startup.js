@@ -62,7 +62,14 @@ Meteor.startup(function() {
   let confDoc = Configuration.findOne({});
   if (!confDoc)
   {
-    Configuration.insert({apikey: null});
+    Configuration.insert({apikey: null, updateInterval: 600, lastUpdate: null});
     console.log('Info: Basic configuration data was created.');
   }
+});
+
+//startup function to trigger updates
+Meteor.startup(function() {
+  Meteor.call('cronjobs', function() {
+    //async
+  });
 });

@@ -36,3 +36,13 @@ Meteor.publish('configuration', function(){
 Meteor.publish('cities', function(){
   return Cities.find({});
 });
+
+//collection for current weather data
+Meteor.publish('currentweather', function(){
+  return CurrentWeather.find({});
+});
+
+//collection for weather forecasts
+Meteor.publish('forecast', function(){
+  return Forecast.find({});
+});
