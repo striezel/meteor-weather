@@ -9,10 +9,12 @@
     <table class="table">
       <tbody>
         <tr>
-          <td align="center" colspan="2"><small>{{date}}</small></td>        
+          <td align="center" colspan="2">
+            <small>  <span class="glyphicon glyphicon-time"> </span> {{date}}</small>
+          </td>
         </tr>
         <tr>
-          <td>Temp.:</td>
+          <td><span class="fa fa-thermometer-half"></span> Temp.:</td>
           <td>{{temp}}&nbsp;°C</td>
         </tr>
         <tr>
@@ -26,6 +28,14 @@
         <tr>
           <td>Humitidy:</td>
           <td>{{humidity}}&nbsp;%</td>
+        </tr>
+        <tr>
+          <td><span class="fa fa-sun-o"></span> Sunrise:</td>
+          <td>{{sunrise}}</td>
+        </tr>
+        <tr>
+          <td><span class="fa fa-sun-o"></span> Sunset:</td>
+          <td>{{sunset}}</td>
         </tr>
       </tbody>
     </table>

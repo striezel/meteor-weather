@@ -27,6 +27,8 @@ Template.weatherdata.helpers({
       city.humidity = wDoc.owmData.main.humidity;
       city.windspeed = wDoc.owmData.wind.speed;
       city.date = moment(wDoc.owmData.dt*1000).format("DD.MM.YYYY HH:mm");
+      city.sunrise = moment(wDoc.owmData.sys.sunrise*1000).format("DD.MM.YYYY HH:mm");
+      city.sunset = moment(wDoc.owmData.sys.sunset*1000).format("DD.MM.YYYY HH:mm");
     } //for
     return list;
   }
