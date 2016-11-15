@@ -1,0 +1,35 @@
+<template name="weatherdata">
+  {{#each cities}}
+  <div class="col-xs-12 col-md4 col-lg-3">
+  <div class="panel panel-default">
+    <div class="panel-heading" align="center">
+      <span class="glyphicon glyphicon-map-marker"> </span>
+      <strong>{{name}}, {{country}}</strong>
+    </div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td align="center" colspan="2"><small>{{date}}</small></td>        
+        </tr>
+        <tr>
+          <td>Temp.:</td>
+          <td>{{temp}}&nbsp;°C</td>
+        </tr>
+        <tr>
+          <td>Wind:</td>
+          <td>{{windspeed}}&nbsp;m/s</td>
+        </tr>
+        <tr>
+          <td>Pressure:</td>
+          <td>{{pressure}}&nbsp;hPa</td>
+        </tr>
+        <tr>
+          <td>Humitidy:</td>
+          <td>{{humidity}}&nbsp;%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  {{/each}}
+</template>

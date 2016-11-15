@@ -10,10 +10,13 @@
       <div class="col-xs-12" align="justify">
       {{#if currentUser}}
         Welcome to Meteor Weather, <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a>!
-        <br /><br />
+        <br style="clear: both;"/><br />
         {{#if isAdmin}}
         <a href="{{pathFor 'configuration'}}" class="btn btn-default col-xs-12 col-md-4">
           <span class="glyphicon glyphicon-cog"> </span> Configuration
+        </a>
+        <a href="{{pathFor 'information'}}" class="btn btn-default col-xs-12 col-md-4">
+          <span class="glyphicon glyphicon-info-sign"> </span> Information
         </a>
         {{/if}}
         <a href="{{pathFor 'profile'}}" class="btn btn-default col-xs-12 col-md-4">
@@ -23,10 +26,12 @@
       {{else}}
         Welcome to Meteor Weather!
       {{/if}}
-      <br /><br />
+      <br style="clear: both;"/><br />
       This web application is still under development.
       Please come back later to see more new features.
-      <br /><br />
+      <br style="clear: both;"/><br />
+      {{> weatherdata}}
+      <br style="clear: both;"/><br />
       {{#unless currentUser}}
         {{> loginButtons}}
       {{/unless}}
