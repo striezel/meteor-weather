@@ -166,7 +166,14 @@ Meteor.methods({
         uname = uname.username || uname.emails[0];
       let verb = activeState ? 'activated' : 'deactivated';
       console.log('Info: City with _id ' + cityId + ' was ' + verb + ' by ' + uname + '.');
-    }
+      if (activeState)
+      {
+        //make sure we have weather data for the city
+        Meteor.call('owmCurrentWeather', cityDoc.id, function(err, result){
+          //The callback is just here to make the call asynchronous.
+        });
+      } //if
+    } //if affected > 0
     return affected;
   }
 });
