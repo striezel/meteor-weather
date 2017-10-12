@@ -45,7 +45,6 @@ Meteor.methods({
     }
     let url = 'http://api.openweathermap.org/data/2.5/find?q=' + encodeURIComponent(city)
             + '&appid=' + encodeURIComponent(confDoc.apikey);
-    console.log('Debug: URL is ' + url + '.');
     HTTP.get(url, function(error, result) {
       if (error)
       {
