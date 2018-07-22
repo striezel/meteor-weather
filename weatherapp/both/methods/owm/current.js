@@ -34,7 +34,7 @@ Meteor.methods({
     {
       throw new Meteor.Error('missing-apikey', 'There is no API key!');
     }
-    let url = 'http://api.openweathermap.org/data/2.5/weather?id=' + encodeURIComponent(owmCityId)
+    let url = 'https://api.openweathermap.org/data/2.5/weather?id=' + encodeURIComponent(owmCityId)
             + '&appid=' + encodeURIComponent(confDoc.apikey);
     HTTP.get(url, function(error, result) {
       if (error)
