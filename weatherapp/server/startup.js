@@ -28,12 +28,17 @@ Meteor.startup(function() {
   });
   //try to get MongoDB server status via raw database
   var rawDB = Info.rawDatabase();
-  rawDB.eval('db.serverStatus()', Meteor.bindEnvironment(function(err, result){
+  rawDB.command({serverStatus: 1}, Meteor.bindEnvironment(function(err, result){
     if (!err)
     {
       Info.insert({name: 'mongoHost', value: result.host});
       Info.insert({name: 'mongoVersion', value: result.version});
       Info.insert({name: 'mongoEngine', value: result.storageEngine.name});
+    }
+    else
+    {
+      console.error('serverStatus command call failed!');
+      console.error(err);
     }
   }));
 
