@@ -22,7 +22,7 @@ session@1.2.1
 twbs:bootstrap
 iron:router
 momentjs:moment
-accounts-password@2.3.2
+accounts-password@2.3.3
 accounts-ui@1.4.2
 http@1.4.2
 fortawesome:fontawesome
